@@ -6,48 +6,67 @@
 using namespace std;
 
 
-Date::Date(int annee, int mois, int jour) {
+Date::Date(int year, int month, int day) {
 
-    _jour = jour;  // [1-31]
-    _mois = mois;  // [1-12]
-    _annee = annee;
+    _day = day;  // [1-31]
+    _month = month;  // [1-12]
+    _year = year;
     getTimestamp();
 }
 
 void Date::getTimestamp() {
 
-    // documentation de : https://koor.fr/C/ctime/ctimefct.wp
+    // documentation from : https://koor.fr/C/ctime/ctimefct.wp
     struct tm d;
 
-    d.tm_mday = _jour;
-    d.tm_mon = _mois -1;  // puisque tm_mon est défini sur [0-11]
-    d.tm_year = _annee -1900;  // dates à partir du 1/01/1900
+    d.tm_mday = _day;
+    d.tm_mon = _month -1;  // tm_mon est defined on [0-11]
+    d.tm_year = _year -1900;  // dates start 1/01/1900
 
-    // reste à 0 car inutile ici
+    // rest at 0 because useless here
     d.tm_hour = 0;
     d.tm_min = 0;
     d.tm_sec = 0;
 
-    // fuseau horaire de la machine
+    // device time zone
     d.tm_isdst = -1;
 
-    _timestamp = mktime(&d);  // retourne timestamp
+    _timestamp = mktime(&d);  // return timestamp
 }
 
-void Date::affiche() const {
-    cout << _annee << '-' << _mois << '-' << _jour;
+void Date::show() const {
+    cout << _year << '-' << _month << '-' << _day;
 }
 
 
-Time::Time(int heures, int minutes, int secondes) {
+Time::Time(int hours, int minutes, int seconds) {
 
-    _heures = heures;
+    _hours = hours;
     _minutes = minutes;
-    _secondes = secondes;
+    _seconds = seconds;
 
     getTimestamp();
 }
 
-void Time::affiche() const {
-    cout << _heures << ':' << _minutes << ':' << _secondes;
+void Time::getTimestamp() {
+
+    struct tm d;
+
+    // date useless
+    d.tm_mday = 1;  // [1-31]
+    d.tm_mon = 0;  // tm_mon est defined on [0-11]
+    d.tm_year = -1900;  // dates start 1/01/1900
+
+    d.tm_hour = _hours;
+    d.tm_min = _minutes;
+    d.tm_sec = _seconds;
+
+    // device time zone
+    d.tm_isdst = -1;
+
+    _timestamp = mktime(&d);  // return timestamp
+}
+
+void Time::show() const {
+    cout << _hours << ':' << _minutes << ':' << _seconds;
 }

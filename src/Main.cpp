@@ -1,12 +1,12 @@
 
 #include "datetime/datetime.hpp"
-#include "etudiant/etudiant.cpp"
-#include "diplome/diplome.h"
+#include "student/student.hpp"
+
 
 int main() {
 
-    Etudiant* etu = new EtudiantDeuxiemeCycle("numEtu", "nom", "prenom", "adresse", "012345678", "t");
-    etu->affiche();
+    Student* etu = new Student("numEtu", "nom", "prenom", "adresse", "012345678", {}, {});
+    etu->show();
 
     return 0;
 }
