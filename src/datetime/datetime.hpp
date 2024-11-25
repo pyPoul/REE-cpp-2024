@@ -10,17 +10,17 @@ using namespace std;
 
 class Date {
 
-    time_t _timestamp;  // utile pour les tris
-    int _jour;
-    int _mois;
-    int _annee;
+    time_t _timestamp;  // useful for sorting
+    int _year;
+    int _month;
+    int _day;
 
     public:
       Date(int, int, int);
 
       ~Date() { delete &_timestamp; }
 
-      void affiche(void) const;
+      void show(void) const;
 
       time_t timestamp() const { return _timestamp; }
 
@@ -32,16 +32,16 @@ class Date {
 class Time {
 
     time_t _timestamp;
-    int _heures;
+    int _hours;
     int _minutes;
-    int _secondes;
+    int _seconds;
 
     public:
       Time(int, int, int);
 
       ~Time() { delete &_timestamp; }
 
-      void affiche(void) const;
+      void show(void) const;
 
       time_t timestamp() const { return _timestamp; }
 
