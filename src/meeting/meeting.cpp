@@ -18,5 +18,15 @@ Meeting::Meeting(
     _company = company;
     _student = student;
 
-    meetingList.push_back(this);
+    meetingList.insert(this);
+}
+
+// overload < operator
+bool Meeting::operator<(const Meeting& other) const {
+
+    // sorts meetingList by company name and datetime
+    if (_company->name() == other.company()->name()) {
+        return _date->timestamp() + _start->timestamp() < other.date()->timestamp() + other.start()->timestamp();
+    }
+    return _company->name() < other.company()->name();
 }
