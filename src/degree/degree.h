@@ -9,15 +9,15 @@ using namespace std;
 
 
 struct Degree {
-    string code;
-    string name;
+    string _code;
+    string _name;
 };
 
 
 struct DegreeObtained {
-    Degree* degree;
-    const Date* dateObt;
-    string placeObt;
+    const Degree* _degree;
+    const Date* _dateObt;
+    string _placeObt;
 };
 
 

@@ -1,6 +1,6 @@
 
-#include "datetime/datetime.hpp"
-#include "student/student.hpp"
+#include "datetime.hpp"
+#include "student.hpp"
 
 
 int main() {

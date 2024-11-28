@@ -17,6 +17,10 @@ class Company {
       Company(string, string, string, string);
 
       ~Company() {}
+
+      string name() const { return _name; }
+
+      void show(void) const;
 };
 
 
