@@ -24,6 +24,9 @@ class Registration {
 
     ~Registration() { delete _student; delete _degree; delete _firstRegistration; }
 
+    Student* student() const { return _student; }
+
+    void show(void) const;
 };
 
 

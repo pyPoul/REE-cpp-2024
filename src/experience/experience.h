@@ -10,10 +10,10 @@ using namespace std;
 
 struct Experience {
 
-    const Date* start;
-    const Date* end;
-    string company;
-    string job;
+    const Date* _start;
+    const Date* _end;
+    string _company;
+    string _job;
 };
 
 

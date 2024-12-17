@@ -19,12 +19,13 @@ class Student {
         string _firstname;
         string _address;
         string _phone;
-        vector<DegreeObtained*> _degreesObtained;
-        vector<Experience*> _professionalExperiences;
+        vector<DegreeObtained*>* _degreesObtained;
+        vector<Experience*>* _professionalExperiences;
 
     public:
       static vector<Student*> students;
 
+      // constructor
       Student(
           string,
           string,
@@ -35,14 +36,20 @@ class Student {
           vector<Experience*>*
       );
 
-      ~Student();
+      // destructor
+      virtual ~Student(void);
 
-      void show(void) const;
+      virtual void show(void) const;
       void showDegrees(void) const;
       void showExperiences(void) const;
+      void showRegistration(void) const;
+      void showResume(void) const;
 
-      void addDegree(DegreeObtained* d) { _degreesObtained.push_back(d); }
-      void addExperience(Experience* e) { _professionalExperiences.push_back(e); }
+      void addDegree(DegreeObtained* d) { _degreesObtained->push_back(d); }
+      void addExperience(Experience* e) { _professionalExperiences->push_back(e); }
+
+      // returns Meeting::meetings*
+      auto getMeetings(void) const;
 };
 
 
@@ -66,7 +73,9 @@ class FirstCycleStudent : public Student {
           vector<Experience*>*
       );
 
-      ~FirstCycleStudent() { delete &_dateObt; }
+      ~FirstCycleStudent(void);
+
+      void show(void) const;
 };
 
 
@@ -86,7 +95,9 @@ class SecondCycleStudent : public Student {
           vector<Experience*>*
       );
 
-      ~SecondCycleStudent() { };
+      ~SecondCycleStudent(void);
+
+      void show(void) const;
 };
 
 

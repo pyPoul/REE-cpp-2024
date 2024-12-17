@@ -1,4 +1,4 @@
-#include <vector>
+#include <set>
 
 #include "../company/company.hpp"
 #include "../student/student.hpp"
@@ -19,11 +19,21 @@ class Meeting {
     Student* _student;
 
     public:
-      static vector<Meeting*> meetingList;
+      typedef set<Meeting*> meetings;
+      static meetings meetingList;
 
       Meeting(const Date*, const Time*, const Time*, Company*, Student*);
 
       ~Meeting() { delete _date; delete _start; delete _end; delete _company; delete _student; }
+
+      // getter
+      Company* company() const { return _company; }
+      Student* student() const { return _student; }
+      const Date* date() const { return _date; }
+      const Time* start() const { return _start; }
+
+      // overload < operator
+      bool operator<(const Meeting&) const;
 };
 
 
