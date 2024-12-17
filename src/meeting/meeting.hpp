@@ -1,8 +1,8 @@
 #include <set>
 
-#include "company.hpp"
-#include "student.hpp"
-#include "datetime.hpp"
+#include "../company/company.hpp"
+#include "../student/student.hpp"
+#include "../datetime/datetime.hpp"
 
 #ifndef MEETING_HPP
 #define MEETING_HPP

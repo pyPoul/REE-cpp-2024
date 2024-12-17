@@ -1,9 +1,11 @@
-#include <vector>
+#include <set>
 
 #include "meeting.hpp"
 
 using namespace std;
 
+
+Meeting::meetings Meeting::meetingList;
 
 Meeting::Meeting(
     const Date* date,

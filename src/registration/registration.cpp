@@ -6,6 +6,8 @@
 using namespace std;
 
 
+vector<Registration*> Registration::registrations;
+
 Registration::Registration(Student* student, Degree* degree, const Date* first, int year) {
     _student = student;
     _degree = degree;
