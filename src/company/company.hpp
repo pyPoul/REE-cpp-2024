@@ -1,4 +1,5 @@
 #include <string>
+#include <vector>
 
 #ifndef COMPANY_HPP
 #define COMPANY_HPP
@@ -14,6 +15,8 @@ class Company {
     string _contactPhone;
 
     public:
+      static vector<Company*> companies;
+
       Company(string, string, string, string);
 
       ~Company() {}

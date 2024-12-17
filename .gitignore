@@ -31,5 +31,14 @@
 *.out
 *.app
 
+# Executable directory
+bin/
+
 # IDE
 .fleet
+.vscode
+.idea
+
+# Scripts
+*.sh
+*.ps1

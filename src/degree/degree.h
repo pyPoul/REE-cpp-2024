@@ -1,6 +1,6 @@
 #include <string>
 
-#include "datetime.hpp"
+#include "../datetime/datetime.hpp"
 
 #ifndef DEGREE_H
 #define DEGREE_H

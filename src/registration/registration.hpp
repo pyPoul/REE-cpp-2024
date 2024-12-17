@@ -1,8 +1,8 @@
 #include <vector>
 
-#include "student.hpp"
-#include "degree.h"
-#include "datetime.hpp"
+#include "../student/student.hpp"
+#include "../degree/degree.h"
+#include "../datetime/datetime.hpp"
 
 #ifndef REGISTRATION_HPP
 #define REGISTRATION_HPP

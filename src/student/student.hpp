@@ -1,9 +1,9 @@
 #include <vector>
 #include <string>
 
-#include "datetime.hpp"
-#include "degree.h"
-#include "experience.h"
+#include "../datetime/datetime.hpp"
+#include "../degree/degree.h"
+#include "../experience/experience.h"
 
 #ifndef STUDENT_HPP
 #define STUDENT_HPP
@@ -37,9 +37,9 @@ class Student {
       );
 
       // destructor
-      ~Student(void);
+      virtual ~Student(void);
 
-      void show(void) const;
+      virtual void show(void) const;
       void showDegrees(void) const;
       void showExperiences(void) const;
       void showRegistration(void) const;
@@ -73,7 +73,9 @@ class FirstCycleStudent : public Student {
           vector<Experience*>*
       );
 
-      ~FirstCycleStudent() { delete &_dateObt; }
+      ~FirstCycleStudent(void);
+
+      void show(void) const;
 };
 
 
@@ -93,7 +95,9 @@ class SecondCycleStudent : public Student {
           vector<Experience*>*
       );
 
-      ~SecondCycleStudent() { };
+      ~SecondCycleStudent(void);
+
+      void show(void) const;
 };
 
 

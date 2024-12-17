@@ -2,12 +2,13 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
+#include <algorithm>
 
-#include "datetime.hpp"
-#include "degree.h"
-#include "experience.h"
-#include "student.hpp"
-#include "utils.cpp"
+#include "datetime/datetime.hpp"
+#include "degree/degree.h"
+#include "experience/experience.h"
+#include "student/student.hpp"
+#include "utils.hpp"
 
 using namespace std;
 
@@ -21,26 +22,33 @@ void addDegree(vector<DegreeObtained*>* degrees) {
     Degree* degree = {};
     DegreeObtained* dO = {};
 
+    // code
     cout << "Code :" << endl;
     cin >> code;
 
+    // name
     cout << "Nom :" << endl;
     cin >> name;
 
+    // date
     while (obtDate.length() != 10) {
         cout << "Date d'obtention : (format AAA-MM-JJ)" << endl;
     }
 
+    // place
     cout << "Lieu d'obtention :" << endl;
     cin >> obtPlace;
 
+    // degree
     degree->_code = code;
     degree->_name = name;
 
+    // degree obtained
     dO->_degree = degree;
     dO->_dateObt = stringToDate(obtDate);
     dO->_placeObt = obtPlace;
 
+    // add to vector
     degrees->push_back(dO);
 }
 
@@ -52,29 +60,35 @@ void addExperience(vector<Experience*>* experiences) {
     string job;
     Experience* exp = {};
 
+    // start
     while (start.length() != 10) {
 
         cout << "Début :" << endl;
         cin >> start;
     }
 
+    // end
     while (end.length() != 10) {
 
         cout << "Fin :" << endl;
         cin >> end;
     }
 
+    // end
     cout << "Nom de l'entreprise :" << endl;
     cin >> company;
 
+    // job
     cout << "Poste occupé :" << endl;
     cin >> job;
 
+    // experience
     exp->_start = stringToDate(start);
     exp->_end = stringToDate(end);
     exp->_company = company;
     exp->_job = job;
 
+    // add to vector
     experiences->push_back(exp);
 }
 
@@ -92,17 +106,21 @@ FirstCycleStudent* createFCStudent(
     string obtDate;
     string obtPlace;
 
+    // series
     cout << "Série du baccalauréat :" << endl;
     cin >> bacSeries;
 
+    // date
     while (obtDate.length() != 10) {
         cout << "Date d'obtention : (format AAAA-MM-JJ)" << endl;
         cin >> obtDate;
     }
 
+    // place
     cout << "Lieu d'obtention :" << endl;
     cin >> obtPlace;
 
+    // student
     return new FirstCycleStudent(
         id,
         name,
@@ -123,10 +141,27 @@ SecondCycleStudent* createSCStudent(
     string firstname,
     string address,
     string phone,
-    vector<DegreeObtained*>*,
-    vector<Experience*>*
+    vector<DegreeObtained*>* degrees,
+    vector<Experience*>* experiences
 ) {
 
+    string discipline;
+
+    // discipline
+    cout << "Nom de la discipline :" << endl;
+    cin >> discipline;
+
+    // student
+    return new SecondCycleStudent(
+        id,
+        name,
+        firstname,
+        address,
+        phone,
+        discipline,
+        degrees,
+        experiences
+    );
 }
 
 Student* createStudent() {
@@ -142,29 +177,29 @@ Student* createStudent() {
     char exp = 'O';
 
     int stuInp;
-    // student's cycle
+    // student cycle
     while (stuInp < 1 || stuInp > 2) {
         cout << "Ajouter un étudiant :\n 1. étudiant de premier cycle.\n 2. étudiant de second cycle." << endl;
         cin >> stuInp;
     }
 
-    // student's id
+    // student id
     cout << "Numéro d'étudiant :" << endl;
     cin >> id;
 
-    // student's name
+    // student name
     cout << "Nom :" << endl;
     cin >> name;
 
-    // student's firstname
+    // student firstname
     cout << "Prénom :" << endl;
     cin >> firstname;
 
-    // student's address
+    // student address
     cout << "Adresse :" << endl;
     cin >> address;
 
-    // student's phone number
+    // student phone number
     cout << "Numéro de téléphone :" << endl;
     cin >> phone;
 
@@ -210,4 +245,20 @@ Student* createStudent() {
     if (stuInp == 2) return createSCStudent(id, name, firstname, address, phone, degrees, experiences);
     // should not happen
     else throw invalid_argument("Can't create Student with this input.");
+}
+
+void listStudents() {
+
+    vector<Student*> sts = Student::students;
+    if (sts.size() == 0) {
+        cout << "Aucun étudiant" << endl;
+        return;
+    }
+
+    int vSize = sts.size();
+    int maxPage;
+    int page = 0;
+    int begin = 0;
+    int end = min(OBJ_PER_PAGE, (int) sts.size());
+
 }
