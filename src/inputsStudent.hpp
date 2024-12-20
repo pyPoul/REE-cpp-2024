@@ -259,6 +259,6 @@ void listStudents() {
     int maxPage;
     int page = 0;
     int begin = 0;
-    int end = min(OBJ_PER_PAGE, (int) sts.size());
+    int end = min(OBJ_PER_PAGE, vSize);
 
 }

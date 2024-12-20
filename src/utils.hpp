@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <vector>
 #include <any>
@@ -39,12 +40,37 @@ Meeting::meetings* fetchStudent(string stuName, string stuFirstname, string stuI
     return new Meeting::meetings();
 }
 
-string Paginate(
-    vector<any>* vec,
-    int page
-) {
-    int index = page * OBJ_PER_PAGE;
-    return "";
+void sPrevious() {
+    cout << "[P] Page Précédente.\t";
+}
+
+void sNext() {
+    cout << "[S] Page Suivante.";
+}
+
+int Paginate(vector<any>* vec) {
+
+    int page = 0;
+    int maxPage;
+    bool end;
+    string inp;
+
+    int vSize = vec->size();
+    int start = page * OBJ_PER_PAGE;
+    int stop = min(start + OBJ_PER_PAGE, vSize -1);
+
+    while (start <= stop) {
+        cout << start + 1 << ". " << vec[start]->show() << endl;
+        start++;
+    }
+
+    if (page != 0) sPrevious();
+    if (page != maxPage -1) sNext();
+        cout << endl;
+
+    cin >> inp;
+
+    return 1;
 }
 
 
